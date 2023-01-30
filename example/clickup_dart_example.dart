@@ -1,4 +1,4 @@
-import 'package:clickup_dart_sdk/clickup_dart_sdk.dart';
+import 'package:clickup_dart/clickup_dart.dart';
 
 void main() {
   final clickUp = ClickUp()..initialize();
