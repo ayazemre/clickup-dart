@@ -52,87 +52,41 @@ class ClickUp {
   ClickUp({
     this.apiEndpoint = "https://api.clickup.com/api/v2",
   });
-  void initialize(
-      {String apiEndpoint = "https://api.clickup.com/api/v2",
-      String? authToken}) async {}
 
-  void _initObject(Map schema) {
-    print("----------------");
-    switch (schema.entries.first.value) {
-      case "Attachments":
-        print(schema);
-        break;
-      case "Authorization":
-        auth = ClickUpAuth();
-        break;
-      case "Checklists":
-        print(schema.entries.first.value);
-        break;
-      case "Comments":
-        print(schema.entries.first.value);
-        break;
-      case "Custom Fields":
-        print(schema.entries.first.value);
-        break;
-      case "Dependencies":
-        print(schema.entries.first.value);
-        break;
-      case "Folders":
-        print(schema.entries.first.value);
-        break;
-      case "Goals":
-        print(schema.entries.first.value);
-        break;
-      case "Guests":
-        print(schema.entries.first.value);
-        break;
-      case "Lists":
-        print(schema.entries.first.value);
-        break;
-      case "Members":
-        print(schema.entries.first.value);
-        break;
-      case "Roles":
-        print(schema.entries.first.value);
-        break;
-      case "Shared Hierarchy":
-        print(schema.entries.first.value);
-        break;
-      case "Spaces":
-        print(schema.entries.first.value);
-        break;
-      case "Tags":
-        print(schema.entries.first.value);
-        break;
-      case "Tasks":
-        print(schema.entries.first.value);
-        break;
-      case "Task Templates":
-        print(schema.entries.first.value);
-        break;
-      case "Teams (User Groups)":
-        print(schema.entries.first.value);
-        break;
-      case "Teams (Workspaces)":
-        print(schema.entries.first.value);
-        break;
-      case "Time Tracking Legacy":
-        print(schema.entries.first.value);
-        break;
-      case "Time Tracking 2.0":
-        print(schema.entries.first.value);
-        break;
-      case "Users":
-        print(schema.entries.first.value);
-        break;
-      case "Views":
-        print(schema.entries.first.value);
-        break;
-      case "Webhooks":
-        print(schema.entries.first.value);
-        break;
-      default:
-        print("switch case failed");
-    }
+  void initialize({required String authToken}) async {
+    auth = ClickUpAuth(endPoint: apiEndpoint, authToken: authToken);
+    attachments =
+        ClickUpAttachments(endPoint: apiEndpoint, authToken: auth.authToken);
+    checklists =
+        ClickUpChecklists(endPoint: apiEndpoint, authToken: auth.authToken);
+    comments =
+        ClickUpComments(endPoint: apiEndpoint, authToken: auth.authToken);
+    customFields =
+        ClickUpCustomFields(endPoint: apiEndpoint, authToken: auth.authToken);
+    dependencies =
+        ClickUpDependencies(endPoint: apiEndpoint, authToken: auth.authToken);
+    folders = ClickUpFolders(endPoint: apiEndpoint, authToken: auth.authToken);
+    goals = ClickUpGoals(endPoint: apiEndpoint, authToken: auth.authToken);
+    guests = ClickUpGuests(endPoint: apiEndpoint, authToken: auth.authToken);
+    lists = ClickUpLists(endPoint: apiEndpoint, authToken: auth.authToken);
+    members = ClickUpMembers(endPoint: apiEndpoint, authToken: auth.authToken);
+    roles = ClickUpRoles(endPoint: apiEndpoint, authToken: auth.authToken);
+    sharedHierarchy = ClickUpSharedHierarchy(
+        endPoint: apiEndpoint, authToken: auth.authToken);
+    spaces = ClickUpSpaces(endPoint: apiEndpoint, authToken: auth.authToken);
+    tags = ClickUpTags(endPoint: apiEndpoint, authToken: auth.authToken);
+    tasks = ClickUpTasks(endPoint: apiEndpoint, authToken: auth.authToken);
+    taskTemplates =
+        ClickUpTaskTemplates(endPoint: apiEndpoint, authToken: auth.authToken);
+    teams = ClickUpTeams(endPoint: apiEndpoint, authToken: auth.authToken);
+    timeTrackingLegacy = ClickUpTimeTrackingLegacy(
+        endPoint: apiEndpoint, authToken: auth.authToken);
+    timeTrackingV2 =
+        ClickUpTimeTrackingV2(endPoint: apiEndpoint, authToken: auth.authToken);
+    users = ClickUpUsers(endPoint: apiEndpoint, authToken: auth.authToken);
+    views = ClickUpViews(endPoint: apiEndpoint, authToken: auth.authToken);
+    webhooks =
+        ClickUpWebhooks(endPoint: apiEndpoint, authToken: auth.authToken);
+    print("ClickUp Initialized..");
   }
 }
