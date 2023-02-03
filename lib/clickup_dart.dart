@@ -1,3 +1,3 @@
-library clickup_dart_sdk;
+library clickup_dart;
 
-export 'src/clickup_dart_sdk_base.dart';
+export 'src/clickup_dart_base.dart';
