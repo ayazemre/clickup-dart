@@ -13,8 +13,6 @@ and the Flutter guide for
 
 ![readmeheader](https://user-images.githubusercontent.com/68122318/216692504-61917cab-d1c1-450c-8304-58787cc6d9d7.png)
 
-![readmeheader](https://user-images.githubusercontent.com/68122318/216690841-1866230a-0fbe-4b98-8c9f-b48343e39e36.png)
-
 This is an API wrapper for ClickUp
 
 
