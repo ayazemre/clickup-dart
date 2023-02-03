@@ -11,7 +11,10 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-![readmeheader](https://user-images.githubusercontent.com/68122318/216692504-61917cab-d1c1-450c-8304-58787cc6d9d7.png)
+
+![readmeheaderblack](https://user-images.githubusercontent.com/68122318/216693931-64f1b1a5-d69a-4af4-9f67-ab281bd68c3d.png#gh-light-mode-only)
+![readmeheaderwhite](https://user-images.githubusercontent.com/68122318/216693937-2cbf9f31-d643-4457-941e-ba33ba3b638d.png#gh-dark-mode-only)
+
 
 This is an API wrapper for ClickUp
 
