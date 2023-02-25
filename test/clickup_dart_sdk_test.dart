@@ -1,4 +1,4 @@
-import 'package:clickup_dart/clickup_dart.dart';
+import 'package:clickup_dart/clickup_dart_sdk.dart';
 import 'package:test/test.dart';
 
 void main() {
