@@ -16,7 +16,7 @@ and the Flutter guide for
 ![readmeheaderwhite](https://user-images.githubusercontent.com/68122318/216693937-2cbf9f31-d643-4457-941e-ba33ba3b638d.png#gh-dark-mode-only)
 
 
-This is an API wrapper for ClickUp
+This is a SDK for ClickUp
 
 
 ## Features

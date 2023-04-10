@@ -1,7 +1,7 @@
 name: clickup_dart_sdk
-description: An API wrapper for ClickUp for creating applications on top of the product.
+description: A SDK for ClickUp for integrating or creating applications on top of the product.
 version: 0.1.0
-repository: https://github.com/ayazemre/clickup-dart
+repository: https://github.com/ayazemre/clickup-dart-sdk
 
 environment:
   sdk: '>=2.18.5 <3.0.0'

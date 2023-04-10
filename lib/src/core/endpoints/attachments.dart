@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart';
 
 class ClickUpAttachments {
@@ -14,19 +13,19 @@ class ClickUpAttachments {
     int? teamID,
   }) async {
     try {
-      final request = MultipartRequest(
-          "POST",
-          Uri.parse(useCustomTaskID
-              ? "$endPoint/task/$taskID/attachment?custom_task_ids=true&team_id=$teamID"
-              : "$endPoint/task/$taskID/attachment"))
-        ..headers.addAll({"Authorization": authToken})
+      final request = MultipartRequest("POST", Uri.parse(useCustomTaskID ? "$endPoint/task/$taskID/attachment?custom_task_ids=true&team_id=$teamID" : "$endPoint/task/$taskID/attachment"))
+        ..headers.addAll({
+          "Authorization": authToken
+        })
         ..files.add(await MultipartFile.fromPath("attachment", filePath));
       final response = await request.send();
       final result = await response.stream.bytesToString();
       return jsonDecode(result);
     } catch (e) {
       print(e);
-      return {"error": e.toString()};
+      return {
+        "error": e.toString()
+      };
     }
   }
 }

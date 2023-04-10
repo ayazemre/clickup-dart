@@ -1,26 +1,26 @@
-import 'package:clickup_dart_sdk/src/attachments/attachments.dart';
-import 'package:clickup_dart_sdk/src/auth/auth.dart';
-import 'package:clickup_dart_sdk/src/checklists/checklists.dart';
-import 'package:clickup_dart_sdk/src/comments/comments.dart';
-import 'package:clickup_dart_sdk/src/custom_fields/custom_fields.dart';
-import 'package:clickup_dart_sdk/src/dependencies/dependencies.dart';
-import 'package:clickup_dart_sdk/src/folders/folders.dart';
-import 'package:clickup_dart_sdk/src/goals/goals.dart';
-import 'package:clickup_dart_sdk/src/guests/guests.dart';
-import 'package:clickup_dart_sdk/src/lists/lists.dart';
-import 'package:clickup_dart_sdk/src/members/members.dart';
-import 'package:clickup_dart_sdk/src/roles/roles.dart';
-import 'package:clickup_dart_sdk/src/shared_hierarchy/shared_hierarchy.dart';
-import 'package:clickup_dart_sdk/src/spaces/spaces.dart';
-import 'package:clickup_dart_sdk/src/tags/tags.dart';
-import 'package:clickup_dart_sdk/src/tasks/task_templates.dart';
-import 'package:clickup_dart_sdk/src/tasks/tasks.dart';
-import 'package:clickup_dart_sdk/src/teams/teams.dart';
-import 'package:clickup_dart_sdk/src/time_tracking/time_tracking_legacy.dart';
-import 'package:clickup_dart_sdk/src/time_tracking/time_tracking_v2.dart';
-import 'package:clickup_dart_sdk/src/users/users.dart';
-import 'package:clickup_dart_sdk/src/views/views.dart';
-import 'package:clickup_dart_sdk/src/webhooks/webhooks.dart';
+import 'core/endpoints/attachments.dart';
+import 'core/endpoints/auth.dart';
+import 'core/endpoints/checklists.dart';
+import 'core/endpoints/comments.dart';
+import 'core/endpoints/custom_fields.dart';
+import 'core/endpoints/dependencies.dart';
+import 'core/endpoints/folders.dart';
+import 'core/endpoints/goals.dart';
+import 'core/endpoints/guests.dart';
+import 'core/endpoints/lists.dart';
+import 'core/endpoints/members.dart';
+import 'core/endpoints/roles.dart';
+import 'core/endpoints/shared_hierarchy.dart';
+import 'core/endpoints/spaces.dart';
+import 'core/endpoints/tags.dart';
+import 'core/endpoints/task_templates.dart';
+import 'core/endpoints/tasks.dart';
+import 'core/endpoints/teams.dart';
+import 'core/endpoints/time_tracking_legacy.dart';
+import 'core/endpoints/time_tracking_v2.dart';
+import 'core/endpoints/users.dart';
+import 'core/endpoints/views.dart';
+import 'core/endpoints/webhooks.dart';
 
 class ClickUp {
   late final String apiEndpoint;
@@ -55,38 +55,28 @@ class ClickUp {
 
   void initialize({required String authToken}) async {
     auth = ClickUpAuth(endPoint: apiEndpoint, authToken: authToken);
-    attachments =
-        ClickUpAttachments(endPoint: apiEndpoint, authToken: auth.authToken);
-    checklists =
-        ClickUpChecklists(endPoint: apiEndpoint, authToken: auth.authToken);
-    comments =
-        ClickUpComments(endPoint: apiEndpoint, authToken: auth.authToken);
-    customFields =
-        ClickUpCustomFields(endPoint: apiEndpoint, authToken: auth.authToken);
-    dependencies =
-        ClickUpDependencies(endPoint: apiEndpoint, authToken: auth.authToken);
+    attachments = ClickUpAttachments(endPoint: apiEndpoint, authToken: auth.authToken);
+    checklists = ClickUpChecklists(endPoint: apiEndpoint, authToken: auth.authToken);
+    comments = ClickUpComments(endPoint: apiEndpoint, authToken: auth.authToken);
+    customFields = ClickUpCustomFields(endPoint: apiEndpoint, authToken: auth.authToken);
+    dependencies = ClickUpDependencies(endPoint: apiEndpoint, authToken: auth.authToken);
     folders = ClickUpFolders(endPoint: apiEndpoint, authToken: auth.authToken);
     goals = ClickUpGoals(endPoint: apiEndpoint, authToken: auth.authToken);
     guests = ClickUpGuests(endPoint: apiEndpoint, authToken: auth.authToken);
     lists = ClickUpLists(endPoint: apiEndpoint, authToken: auth.authToken);
     members = ClickUpMembers(endPoint: apiEndpoint, authToken: auth.authToken);
     roles = ClickUpRoles(endPoint: apiEndpoint, authToken: auth.authToken);
-    sharedHierarchy = ClickUpSharedHierarchy(
-        endPoint: apiEndpoint, authToken: auth.authToken);
+    sharedHierarchy = ClickUpSharedHierarchy(endPoint: apiEndpoint, authToken: auth.authToken);
     spaces = ClickUpSpaces(endPoint: apiEndpoint, authToken: auth.authToken);
     tags = ClickUpTags(endPoint: apiEndpoint, authToken: auth.authToken);
     tasks = ClickUpTasks(endPoint: apiEndpoint, authToken: auth.authToken);
-    taskTemplates =
-        ClickUpTaskTemplates(endPoint: apiEndpoint, authToken: auth.authToken);
+    taskTemplates = ClickUpTaskTemplates(endPoint: apiEndpoint, authToken: auth.authToken);
     teams = ClickUpTeams(endPoint: apiEndpoint, authToken: auth.authToken);
-    timeTrackingLegacy = ClickUpTimeTrackingLegacy(
-        endPoint: apiEndpoint, authToken: auth.authToken);
-    timeTrackingV2 =
-        ClickUpTimeTrackingV2(endPoint: apiEndpoint, authToken: auth.authToken);
+    timeTrackingLegacy = ClickUpTimeTrackingLegacy(endPoint: apiEndpoint, authToken: auth.authToken);
+    timeTrackingV2 = ClickUpTimeTrackingV2(endPoint: apiEndpoint, authToken: auth.authToken);
     users = ClickUpUsers(endPoint: apiEndpoint, authToken: auth.authToken);
     views = ClickUpViews(endPoint: apiEndpoint, authToken: auth.authToken);
-    webhooks =
-        ClickUpWebhooks(endPoint: apiEndpoint, authToken: auth.authToken);
+    webhooks = ClickUpWebhooks(endPoint: apiEndpoint, authToken: auth.authToken);
     print("ClickUp Initialized..");
   }
 }
