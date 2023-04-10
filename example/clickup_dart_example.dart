@@ -1,7 +1,4 @@
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:clickup_dart/clickup_dart.dart';
+import 'package:clickup_dart_sdk/clickup_dart_sdk.dart';
 
 void main() async {
   final token = "pk_testrandomtoken123";
