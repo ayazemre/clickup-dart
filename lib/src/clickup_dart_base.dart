@@ -1,6 +1,8 @@
+import 'package:http/http.dart';
+
 import 'core/endpoints/attachments.dart';
 import 'core/endpoints/auth.dart';
-import 'core/endpoints/checklists.dart';
+import 'core/endpoints/task_checklists.dart';
 import 'core/endpoints/comments.dart';
 import 'core/endpoints/custom_fields.dart';
 import 'core/endpoints/dependencies.dart';
@@ -24,10 +26,11 @@ import 'core/endpoints/webhooks.dart';
 
 class ClickUp {
   late final String apiEndpoint;
+  late final Client httpClient;
 
   late final ClickUpAuth auth;
   late final ClickUpAttachments attachments;
-  late final ClickUpChecklists checklists;
+  late final ClickUpTaskChecklists taskChecklists;
   late final ClickUpComments comments;
   late final ClickUpCustomFields customFields;
   late final ClickUpDependencies dependencies;
@@ -54,10 +57,12 @@ class ClickUp {
   });
 
   void initialize({required String authToken}) async {
-    auth = ClickUpAuth(endPoint: apiEndpoint, authToken: authToken);
+    httpClient = Client();
+
+    auth = ClickUpAuth(endPoint: apiEndpoint, authToken: authToken, httpClient: httpClient);
     attachments = ClickUpAttachments(endPoint: apiEndpoint, authToken: auth.authToken);
-    checklists = ClickUpChecklists(endPoint: apiEndpoint, authToken: auth.authToken);
-    comments = ClickUpComments(endPoint: apiEndpoint, authToken: auth.authToken);
+    taskChecklists = ClickUpTaskChecklists(endPoint: apiEndpoint, authToken: auth.authToken);
+    comments = ClickUpComments(endPoint: apiEndpoint, authToken: auth.authToken, httpClient: httpClient);
     customFields = ClickUpCustomFields(endPoint: apiEndpoint, authToken: auth.authToken);
     dependencies = ClickUpDependencies(endPoint: apiEndpoint, authToken: auth.authToken);
     folders = ClickUpFolders(endPoint: apiEndpoint, authToken: auth.authToken);

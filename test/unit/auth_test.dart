@@ -16,5 +16,10 @@ void main() {
       print(user);
       expect(user.containsKey("user"), true);
     });
+    test('Authorization - Get Authorized Teams(Workspaces)', () async {
+      final teams = await clickUp.auth.getAuthorizedTeams();
+      print(teams);
+      expect(teams.containsKey("teams"), true);
+    });
   });
 }

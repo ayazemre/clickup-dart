@@ -5,6 +5,7 @@ class ClickUpAttachments {
   ClickUpAttachments({required this.endPoint, required this.authToken});
   final String endPoint;
   final String authToken;
+  late Client httpClient;
 
   Future<Map<String, dynamic>> createTaskAttachment({
     required String taskID,
