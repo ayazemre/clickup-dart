@@ -24,9 +24,7 @@ class ClickUpComments {
       return comments;
     } catch (e) {
       print(e.toString());
-      return {
-        "error": "$e"
-      };
+      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -35,7 +33,7 @@ class ClickUpComments {
   /// ```
   /// {
   /// "comment_text": "This is my sample comment",  // Should be String.
-  /// "assignee": 123456,   // Should be an int ID of the assignee.
+  /// "assignee": 123456,   // Should be an int.
   /// "notify_all": false   // Should be a boolean.
   /// }
   /// ```
@@ -60,9 +58,7 @@ class ClickUpComments {
       return createdComment;
     } catch (e) {
       print(e.toString());
-      return {
-        "error": "$e"
-      };
+      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -79,9 +75,7 @@ class ClickUpComments {
       return createdComment;
     } catch (e) {
       print(e.toString());
-      return {
-        "error": "$e"
-      };
+      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -103,9 +97,7 @@ class ClickUpComments {
       return createdComment;
     } catch (e) {
       print(e.toString());
-      return {
-        "error": "$e"
-      };
+      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -123,9 +115,7 @@ class ClickUpComments {
       return createdComment;
     } catch (e) {
       print(e.toString());
-      return {
-        "error": "$e"
-      };
+      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -148,9 +138,7 @@ class ClickUpComments {
       return createdComment;
     } catch (e) {
       print(e.toString());
-      return {
-        "error": "$e"
-      };
+      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -172,9 +160,7 @@ class ClickUpComments {
       return createdComment;
     } catch (e) {
       print(e.toString());
-      return {
-        "error": "$e"
-      };
+      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -190,9 +176,7 @@ class ClickUpComments {
       return createdComment;
     } catch (e) {
       print(e.toString());
-      return {
-        "error": "$e"
-      };
+      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 }

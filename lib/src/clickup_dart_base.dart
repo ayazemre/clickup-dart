@@ -63,7 +63,7 @@ class ClickUp {
     attachments = ClickUpAttachments(endPoint: apiEndpoint, authToken: auth.authToken);
     taskChecklists = ClickUpTaskChecklists(endPoint: apiEndpoint, authToken: auth.authToken);
     comments = ClickUpComments(endPoint: apiEndpoint, authToken: auth.authToken, httpClient: httpClient);
-    customFields = ClickUpCustomFields(endPoint: apiEndpoint, authToken: auth.authToken);
+    customFields = ClickUpCustomFields(endPoint: apiEndpoint, authToken: auth.authToken, httpClient: httpClient);
     dependencies = ClickUpDependencies(endPoint: apiEndpoint, authToken: auth.authToken);
     folders = ClickUpFolders(endPoint: apiEndpoint, authToken: auth.authToken);
     goals = ClickUpGoals(endPoint: apiEndpoint, authToken: auth.authToken);

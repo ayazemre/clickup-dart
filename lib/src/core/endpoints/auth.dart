@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:clickup_dart_sdk/src/core/clickup_exception.dart';
 import 'package:http/http.dart';
 
 class ClickUpAuth {
@@ -34,9 +35,7 @@ class ClickUpAuth {
       return user;
     } catch (e) {
       print(e.toString());
-      return {
-        "error": "$e"
-      };
+      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -50,9 +49,7 @@ class ClickUpAuth {
       return teams;
     } catch (e) {
       print(e.toString());
-      return {
-        "error": "$e"
-      };
+      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 }

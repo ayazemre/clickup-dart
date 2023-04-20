@@ -5,9 +5,9 @@ import 'package:test/test.dart';
 void main() {
   late String token;
   late ClickUp clickUp;
-  group('API endpoint Tests', () {
+  group('Comments Tests', () {
     setUp(() async {
-      // Additional setup goes here.
+      // Setting up the SDK with a random token and mock server. ClickUp's official mock server accepts random tokens as valid tokens.
       token = "pk_qwerty123456";
       clickUp = ClickUp(apiEndpoint: "https://a00fb6e0-339c-4201-972f-503b9932d17a.remockly.com")..initialize(authToken: token);
     });
@@ -30,12 +30,12 @@ void main() {
 
     test('Comments - Get Chat View Comments - Last 25', () async {
       final chatViewComments = await clickUp.comments.getChatViewComments(viewID: "12345");
-      print(chatViewComments);
+
       expect(chatViewComments.containsKey("comments"), true);
     });
     test('Comments - Get Chat View Comments - Custom Range', () async {
       final chatViewComments = await clickUp.comments.getChatViewComments(viewID: "12345", start: 3, startID: "12345");
-      print(chatViewComments);
+
       expect(chatViewComments.containsKey("comments"), true);
     });
     test('Comments - Create Chat View Comment', () async {
@@ -43,7 +43,7 @@ void main() {
         "comment_text": "Hi I am Emre",
         "notify_all": true
       });
-      print(createdChatViewComment);
+
       expect(createdChatViewComment.containsKey("id"), true);
     });
     test('Comments - Create Chat View Comment - Invalid Data', () async {
@@ -51,12 +51,12 @@ void main() {
     });
     test('Comments - Get List Comments - Last 25', () async {
       final listComments = await clickUp.comments.getListComments(listID: 12345);
-      print(listComments);
+
       expect(listComments.containsKey("comments"), true);
     });
     test('Comments - Get List Comments - Custom Range', () async {
       final listComments = await clickUp.comments.getListComments(listID: 12345, start: 2, startID: "123");
-      print(listComments);
+
       expect(listComments.containsKey("comments"), true);
     });
 
@@ -77,7 +77,6 @@ void main() {
         "assignee": 123456,
         "resolved": true
       });
-      print(updatedComment);
       expect(updatedComment.isEmpty, true);
     });
     test('Comments - Update Comment - Invalid Data', () async {
@@ -85,7 +84,6 @@ void main() {
     });
     test('Comments - Delete Comment', () async {
       final deletedComment = await clickUp.comments.deleteComment(commentID: 1234);
-      print(deletedComment);
       expect(deletedComment.isEmpty, true);
     });
   });

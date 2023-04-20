@@ -1,6 +1,6 @@
 enum ClickUpExceptionType {
   invalidModel,
-  invalidRequest,
+  requestError,
   unauthorized
 }
 
