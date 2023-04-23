@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 import '../clickup_exception.dart';
 
 class ClickUpAttachments {
-  ClickUpAttachments({required this.endPoint, required this.authToken});
+  ClickUpAttachments({required this.endPoint, required this.authToken, required this.httpClient});
   final String endPoint;
   final String authToken;
   late Client httpClient;

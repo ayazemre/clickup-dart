@@ -1,5 +1,8 @@
+import 'package:http/http.dart';
+
 class ClickUpTaskChecklists {
   late String endPoint;
   late String authToken;
-  ClickUpTaskChecklists({required this.endPoint, required this.authToken});
+  late Client httpClient;
+  ClickUpTaskChecklists({required this.endPoint, required this.authToken, required this.httpClient});
 }
