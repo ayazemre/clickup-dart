@@ -1,4 +1,4 @@
-## 0.3.0
+## 0.2.0
 
 - Tests added.
 - Implemented endpoints for Attachments, Authentication, Comments, Custom Fields and Folders
