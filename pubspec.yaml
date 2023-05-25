@@ -1,6 +1,6 @@
 name: clickup_dart_sdk
 description: A SDK for ClickUp for integrating or creating applications on top of the product.
-version: 0.3.0
+version: 0.3.2
 repository: https://github.com/ayazemre/clickup-dart-sdk
 
 environment:
