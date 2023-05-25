@@ -8,7 +8,10 @@ void main() {
     setUp(() async {
       // Additional setup goes here.
       token = "pk_qwerty123456";
-      clickUp = ClickUp(apiEndpoint: "https://a00fb6e0-339c-4201-972f-503b9932d17a.remockly.com")..initialize(authToken: token);
+      clickUp = ClickUp(
+          apiEndpoint:
+              "https://a00fb6e0-339c-4201-972f-503b9932d17a.remockly.com")
+        ..initialize(authToken: token);
     });
 
     test('Spaces - Get Spaces', () async {
@@ -17,11 +20,13 @@ void main() {
       expect(spaces.containsKey("spaces"), true);
     });
     test('Spaces - Get Spaces: Include Archived', () async {
-      final spaces = await clickUp.spaces.getSpaces(teamID: 123, includeArchived: true);
+      final spaces =
+          await clickUp.spaces.getSpaces(teamID: 123, includeArchived: true);
       expect(spaces.containsKey("spaces"), true);
     });
     test('Spaces - Create Space', () async {
-      final space = await clickUp.spaces.createSpace(teamID: 123, spaceSchema: clickUp.spaces.sampleSpaceSchema);
+      final space = await clickUp.spaces.createSpace(
+          teamID: 123, spaceSchema: clickUp.spaces.sampleSpaceSchema);
       expect(space.containsKey("features"), true);
     });
     test('Spaces - Get Space', () async {
@@ -29,13 +34,10 @@ void main() {
       expect(space.containsKey("features"), true);
     });
     test('Spaces - Update Space', () async {
-      final space = await clickUp.spaces.updateSpace(spaceID: 123, spaceSchema: {
+      final space =
+          await clickUp.spaces.updateSpace(spaceID: 123, spaceSchema: {
         ...clickUp.spaces.sampleSpaceSchema,
-        ...{
-          "color": "blue",
-          "private": false,
-          "admin_can_manage": false
-        }
+        ...{"color": "blue", "private": false, "admin_can_manage": false}
       });
       expect(space.containsKey("features"), true);
     });

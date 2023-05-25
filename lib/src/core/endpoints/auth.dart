@@ -7,7 +7,10 @@ class ClickUpAuth {
   late String authToken;
   late Client httpClient;
 
-  ClickUpAuth({required this.endPoint, required this.authToken, required this.httpClient});
+  ClickUpAuth(
+      {required this.endPoint,
+      required this.authToken,
+      required this.httpClient});
 
   /// Get access token based on your credentials.
   // Future<String> getAccessToken(
@@ -28,28 +31,32 @@ class ClickUpAuth {
   /// Get the user bound to the token.
   Future<Map<String, dynamic>> getAuthorizedUser() async {
     try {
-      final response = await httpClient.get(Uri.parse("$endPoint/user"), headers: {
-        "Authorization": authToken
-      });
+      final response = await httpClient.get(Uri.parse("$endPoint/user"),
+          headers: {"Authorization": authToken});
       final user = jsonDecode(response.body);
       return user;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
   /// Get the teams bound to authorized user.
   Future<Map<String, dynamic>> getAuthorizedTeams() async {
     try {
-      final response = await httpClient.get(Uri.parse("$endPoint/team"), headers: {
-        "Authorization": authToken
-      });
+      final response = await httpClient.get(Uri.parse("$endPoint/team"),
+          headers: {"Authorization": authToken});
       final teams = jsonDecode(response.body);
       return teams;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 }
