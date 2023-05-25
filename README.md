@@ -12,11 +12,7 @@ and the Flutter guide for
 -->
 
 
-![readmeheaderblack](https://user-images.githubusercontent.com/68122318/216693931-64f1b1a5-d69a-4af4-9f67-ab281bd68c3d.png#gh-light-mode-only)
-![readmeheaderwhite](https://user-images.githubusercontent.com/68122318/216693937-2cbf9f31-d643-4457-941e-ba33ba3b638d.png#gh-dark-mode-only)
-
-
-This is a SDK for ClickUp
+This is a SDK for ClickUp written in Dart
 
 
 ## Features

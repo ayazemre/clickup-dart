@@ -1,3 +1,7 @@
+## 0.3.0
+
+- Implemented endpoints for Tasks.
+
 ## 0.2.0
 
 - Tests added.

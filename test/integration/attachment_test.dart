@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:path/path.dart' as p;
 
 import 'package:clickup_dart_sdk/clickup_dart_sdk.dart';
@@ -16,7 +15,7 @@ void main() {
     });
 
     test('Upload an attachment', () async {
-      final response = await clickUp.attachments.createTaskAttachment(filePath: p.join(p.current, "test", "beksinski_sample.jpg"), taskID: "213123", useCustomTaskID: false);
+      final response = await clickUp.attachments.createTaskAttachment(filePath: p.join(p.current, "test", "integration", "beksinski_sample.jpg"), taskID: "213123", useCustomTaskID: false);
       expect(response, {
         'message': 'Mock server error. Media type multipart/form-data deserialization is not supported.'
       });
