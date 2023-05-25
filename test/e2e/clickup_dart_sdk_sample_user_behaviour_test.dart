@@ -11,6 +11,11 @@ void main() {
       clickUp = ClickUp(apiEndpoint: "https://a00fb6e0-339c-4201-972f-503b9932d17a.remockly.com")..initialize(authToken: token);
     });
 
-    /// TO-DO: Oauth Testing
+    group("User Logs in, creates a task and uploads a file.", () {
+      test('Authorization - Get Authorized User', () async {
+        final user = await clickUp.auth.getAuthorizedUser();
+        expect(user.containsKey("user"), true);
+      });
+    });
   });
 }
