@@ -8,73 +8,95 @@ class ClickUpFolders {
   late String authToken;
   late Client httpClient;
 
-  ClickUpFolders({required this.endPoint, required this.authToken, required this.httpClient});
+  ClickUpFolders(
+      {required this.endPoint,
+      required this.authToken,
+      required this.httpClient});
 
-  Future<Map<String, dynamic>> getFolders({required double spaceID, bool includeArchived = false}) async {
+  Future<Map<String, dynamic>> getFolders(
+      {required double spaceID, bool includeArchived = false}) async {
     try {
-      final response = await httpClient.get(Uri.parse(includeArchived ? "$endPoint/space/$spaceID/folder?archived=true" : "$endPoint/space/$spaceID/folder"), headers: {
-        "Authorization": authToken,
-      });
+      final response = await httpClient.get(
+          Uri.parse(includeArchived
+              ? "$endPoint/space/$spaceID/folder?archived=true"
+              : "$endPoint/space/$spaceID/folder"),
+          headers: {
+            "Authorization": authToken,
+          });
       final folders = jsonDecode(response.body);
       return folders;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
-  Future<Map<String, dynamic>> createFolder({required double spaceID, required String name}) async {
+  Future<Map<String, dynamic>> createFolder(
+      {required double spaceID, required String name}) async {
     try {
-      final response = await httpClient.post(Uri.parse("$endPoint/space/$spaceID/folder"),
+      final response = await httpClient.post(
+          Uri.parse("$endPoint/space/$spaceID/folder"),
           headers: {
             "Authorization": authToken,
             "Content-Type": "application/json"
           },
-          body: jsonEncode({
-            "name": name
-          }));
+          body: jsonEncode({"name": name}));
       final folder = jsonDecode(response.body);
       return folder;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
   Future<Map<String, dynamic>> getFolder({required double folderID}) async {
     try {
-      final response = await httpClient.get(Uri.parse("$endPoint/folder/$folderID"), headers: {
+      final response = await httpClient
+          .get(Uri.parse("$endPoint/folder/$folderID"), headers: {
         "Authorization": authToken,
       });
       final folder = jsonDecode(response.body);
       return folder;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
-  Future<Map<String, dynamic>> updateFolder({required double folderID, required String name}) async {
+  Future<Map<String, dynamic>> updateFolder(
+      {required double folderID, required String name}) async {
     try {
-      final response = await httpClient.put(Uri.parse("$endPoint/folder/$folderID"),
+      final response = await httpClient.put(
+          Uri.parse("$endPoint/folder/$folderID"),
           headers: {
             "Authorization": authToken,
             "Content-Type": "application/json"
           },
-          body: jsonEncode({
-            "name": name
-          }));
+          body: jsonEncode({"name": name}));
       final folders = jsonDecode(response.body);
       return folders;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
   Future<Map<String, dynamic>> deleteFolder({required double folderID}) async {
     try {
-      final response = await httpClient.delete(Uri.parse("$endPoint/folder/$folderID"), headers: {
+      final response = await httpClient
+          .delete(Uri.parse("$endPoint/folder/$folderID"), headers: {
         "Authorization": authToken,
         "Content-Type": "application/json"
       });
@@ -82,7 +104,10 @@ class ClickUpFolders {
       return folders;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 }

@@ -5,5 +5,8 @@ class ClickUpUsers {
   late String authToken;
   late Client httpClient;
 
-  ClickUpUsers({required this.endPoint, required this.authToken, required this.httpClient});
+  ClickUpUsers(
+      {required this.endPoint,
+      required this.authToken,
+      required this.httpClient});
 }

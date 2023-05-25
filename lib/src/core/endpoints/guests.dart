@@ -5,5 +5,8 @@ class ClickUpGuests {
   late String authToken;
   late Client httpClient;
 
-  ClickUpGuests({required this.endPoint, required this.authToken, required this.httpClient});
+  ClickUpGuests(
+      {required this.endPoint,
+      required this.authToken,
+      required this.httpClient});
 }

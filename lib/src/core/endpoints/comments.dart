@@ -7,7 +7,10 @@ class ClickUpComments {
   late String endPoint;
   late String authToken;
   late Client httpClient;
-  ClickUpComments({required this.endPoint, required this.authToken, required this.httpClient});
+  ClickUpComments(
+      {required this.endPoint,
+      required this.authToken,
+      required this.httpClient});
 
   Future<Map<String, dynamic>> getTaskComments({
     required String taskID,
@@ -17,14 +20,19 @@ class ClickUpComments {
     String? startID,
   }) async {
     try {
-      final response = await httpClient.get(Uri.parse(useCustomTaskID ? "$endPoint/task/$taskID/comment?custom_task_ids=true&team_id=$teamID" : "$endPoint/task/$taskID/comment"), headers: {
-        "Authorization": authToken
-      });
+      final response = await httpClient.get(
+          Uri.parse(useCustomTaskID
+              ? "$endPoint/task/$taskID/comment?custom_task_ids=true&team_id=$teamID"
+              : "$endPoint/task/$taskID/comment"),
+          headers: {"Authorization": authToken});
       final comments = jsonDecode(response.body);
       return comments;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -44,11 +52,19 @@ class ClickUpComments {
     bool useCustomTaskID = false,
     int? teamID,
   }) async {
-    if (!comment.containsKey("comment_text") && !comment.containsKey("assignee") && !comment.containsKey("notify_all")) {
-      throw ClickUpException(exceptionType: ClickUpExceptionType.invalidModel, exceptionMessage: "Your data does not match API's model requirements. Please check documentation.");
+    if (!comment.containsKey("comment_text") &&
+        !comment.containsKey("assignee") &&
+        !comment.containsKey("notify_all")) {
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.invalidModel,
+          exceptionMessage:
+              "Your data does not match API's model requirements. Please check documentation.");
     }
     try {
-      final response = await httpClient.post(Uri.parse(useCustomTaskID ? "$endPoint/task/$taskID/comment?custom_task_ids=true&team_id=$teamID" : "$endPoint/task/$taskID/comment"),
+      final response = await httpClient.post(
+          Uri.parse(useCustomTaskID
+              ? "$endPoint/task/$taskID/comment?custom_task_ids=true&team_id=$teamID"
+              : "$endPoint/task/$taskID/comment"),
           headers: {
             "Authorization": authToken,
             "Content-Type": "application/json"
@@ -58,7 +74,10 @@ class ClickUpComments {
       return createdComment;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -68,14 +87,21 @@ class ClickUpComments {
     String? startID,
   }) async {
     try {
-      final response = await httpClient.get(Uri.parse(start != null && startID != null ? "$endPoint/view/$viewID/comment?start=$start&start_id=$startID" : "$endPoint/view/$viewID/comment"), headers: {
-        "Authorization": authToken,
-      });
+      final response = await httpClient.get(
+          Uri.parse(start != null && startID != null
+              ? "$endPoint/view/$viewID/comment?start=$start&start_id=$startID"
+              : "$endPoint/view/$viewID/comment"),
+          headers: {
+            "Authorization": authToken,
+          });
       final createdComment = jsonDecode(response.body);
       return createdComment;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -83,11 +109,16 @@ class ClickUpComments {
     required String viewID,
     required Map<String, dynamic> comment,
   }) async {
-    if (!comment.containsKey("comment_text") && !comment.containsKey("notify_all")) {
-      throw ClickUpException(exceptionType: ClickUpExceptionType.invalidModel, exceptionMessage: "Your data does not match API's model requirements. Please check documentation.");
+    if (!comment.containsKey("comment_text") &&
+        !comment.containsKey("notify_all")) {
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.invalidModel,
+          exceptionMessage:
+              "Your data does not match API's model requirements. Please check documentation.");
     }
     try {
-      final response = await httpClient.post(Uri.parse("$endPoint/view/$viewID/comment"),
+      final response = await httpClient.post(
+          Uri.parse("$endPoint/view/$viewID/comment"),
           headers: {
             "Authorization": authToken,
             "Content-Type": "application/json"
@@ -97,7 +128,10 @@ class ClickUpComments {
       return createdComment;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -107,15 +141,22 @@ class ClickUpComments {
     String? startID,
   }) async {
     try {
-      final response = await httpClient.get(Uri.parse(start != null && startID != null ? "$endPoint/list/$listID/comment?start=$start&start_id=$startID" : "$endPoint/list/$listID/comment"), headers: {
-        "Authorization": authToken,
-        "Content-Type": "application/json"
-      });
+      final response = await httpClient.get(
+          Uri.parse(start != null && startID != null
+              ? "$endPoint/list/$listID/comment?start=$start&start_id=$startID"
+              : "$endPoint/list/$listID/comment"),
+          headers: {
+            "Authorization": authToken,
+            "Content-Type": "application/json"
+          });
       final createdComment = jsonDecode(response.body);
       return createdComment;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -123,12 +164,18 @@ class ClickUpComments {
     required String listID,
     required Map<String, dynamic> comment,
   }) async {
-    if (!comment.containsKey("comment_text") && !comment.containsKey("assignee") && !comment.containsKey("notify_all")) {
-      throw ClickUpException(exceptionType: ClickUpExceptionType.invalidModel, exceptionMessage: "Your data does not match API's model requirements. Please check documentation.");
+    if (!comment.containsKey("comment_text") &&
+        !comment.containsKey("assignee") &&
+        !comment.containsKey("notify_all")) {
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.invalidModel,
+          exceptionMessage:
+              "Your data does not match API's model requirements. Please check documentation.");
     }
 
     try {
-      final response = await httpClient.post(Uri.parse("$endPoint/list/$listID/comment"),
+      final response = await httpClient.post(
+          Uri.parse("$endPoint/list/$listID/comment"),
           headers: {
             "Authorization": authToken,
             "Content-Type": "application/json"
@@ -138,7 +185,10 @@ class ClickUpComments {
       return createdComment;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -146,11 +196,17 @@ class ClickUpComments {
     required double commentID,
     required Map<String, dynamic> comment,
   }) async {
-    if (!comment.containsKey("comment_text") && !comment.containsKey("assignee") && !comment.containsKey("resolved")) {
-      throw ClickUpException(exceptionType: ClickUpExceptionType.invalidModel, exceptionMessage: "Your data does not match API's model requirements. Please check documentation.");
+    if (!comment.containsKey("comment_text") &&
+        !comment.containsKey("assignee") &&
+        !comment.containsKey("resolved")) {
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.invalidModel,
+          exceptionMessage:
+              "Your data does not match API's model requirements. Please check documentation.");
     }
     try {
-      final response = await httpClient.put(Uri.parse("$endPoint/comment/$commentID"),
+      final response = await httpClient.put(
+          Uri.parse("$endPoint/comment/$commentID"),
           headers: {
             "Authorization": authToken,
             "Content-Type": "application/json"
@@ -160,7 +216,10 @@ class ClickUpComments {
       return createdComment;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -168,7 +227,8 @@ class ClickUpComments {
     required double commentID,
   }) async {
     try {
-      final response = await httpClient.delete(Uri.parse("$endPoint/comment/$commentID"), headers: {
+      final response = await httpClient
+          .delete(Uri.parse("$endPoint/comment/$commentID"), headers: {
         "Authorization": authToken,
         "Content-Type": "application/json"
       });
@@ -176,7 +236,10 @@ class ClickUpComments {
       return createdComment;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 }

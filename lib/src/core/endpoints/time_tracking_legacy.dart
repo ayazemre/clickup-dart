@@ -5,5 +5,8 @@ class ClickUpTimeTrackingLegacy {
   late String authToken;
   late Client httpClient;
 
-  ClickUpTimeTrackingLegacy({required this.endPoint, required this.authToken, required this.httpClient});
+  ClickUpTimeTrackingLegacy(
+      {required this.endPoint,
+      required this.authToken,
+      required this.httpClient});
 }
