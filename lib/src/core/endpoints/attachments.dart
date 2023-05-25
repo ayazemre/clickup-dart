@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'package:http/http.dart';
 
+import '../clickup_exception.dart';
+
 class ClickUpAttachments {
-  ClickUpAttachments({required this.endPoint, required this.authToken});
+  ClickUpAttachments({required this.endPoint, required this.authToken, required this.httpClient});
   final String endPoint;
   final String authToken;
+  late Client httpClient;
 
   Future<Map<String, dynamic>> createTaskAttachment({
     required String taskID,
@@ -23,9 +26,7 @@ class ClickUpAttachments {
       return jsonDecode(result);
     } catch (e) {
       print(e);
-      return {
-        "error": e.toString()
-      };
+      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 }
