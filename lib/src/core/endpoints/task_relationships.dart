@@ -5,5 +5,8 @@ class ClickUpTaskRelationships {
   late String authToken;
   late Client httpClient;
 
-  ClickUpTaskRelationships({required this.endPoint, required this.authToken, required this.httpClient});
+  ClickUpTaskRelationships(
+      {required this.endPoint,
+      required this.authToken,
+      required this.httpClient});
 }

@@ -2,21 +2,23 @@ import 'dart:convert';
 import 'package:clickup_dart_sdk/src/core/clickup_exception.dart';
 import 'package:http/http.dart';
 
-enum CustomFieldType {
-  url,
-  number
-}
+enum CustomFieldType { url, number }
 
 class ClickUpCustomFields {
   late String endPoint;
   late String authToken;
   late Client httpClient;
 
-  ClickUpCustomFields({required this.endPoint, required this.authToken, required this.httpClient});
+  ClickUpCustomFields(
+      {required this.endPoint,
+      required this.authToken,
+      required this.httpClient});
 
-  Future<Map<String, dynamic>> getAccessibleCustomFields({required String listID}) async {
+  Future<Map<String, dynamic>> getAccessibleCustomFields(
+      {required String listID}) async {
     try {
-      final response = await httpClient.get(Uri.parse("$endPoint/list/$listID/field"), headers: {
+      final response = await httpClient
+          .get(Uri.parse("$endPoint/list/$listID/field"), headers: {
         "Authorization": authToken,
         "Content-Type": "application/json"
       });
@@ -24,7 +26,10 @@ class ClickUpCustomFields {
       return customFields;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
@@ -169,13 +174,24 @@ class ClickUpCustomFields {
   ///   },  // Should be Map.
   /// }
   /// ```
-  Future<Map<String, dynamic>> setCustomFieldValue({required String taskID, required String fieldID, required Map<String, dynamic> value, bool customTaskID = false, double? teamID}) async {
+  Future<Map<String, dynamic>> setCustomFieldValue(
+      {required String taskID,
+      required String fieldID,
+      required Map<String, dynamic> value,
+      bool customTaskID = false,
+      double? teamID}) async {
     if (!value.containsKey("value")) {
-      throw ClickUpException(exceptionType: ClickUpExceptionType.invalidModel, exceptionMessage: "Your value model is invalid. Please read the function documentation.");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.invalidModel,
+          exceptionMessage:
+              "Your value model is invalid. Please read the function documentation.");
     }
 
     try {
-      final response = await httpClient.post(Uri.parse(customTaskID ? "$endPoint/task/$taskID/field/$fieldID?custom_task_ids=true&team_id=$teamID" : "$endPoint/task/$taskID/field/$fieldID"),
+      final response = await httpClient.post(
+          Uri.parse(customTaskID
+              ? "$endPoint/task/$taskID/field/$fieldID?custom_task_ids=true&team_id=$teamID"
+              : "$endPoint/task/$taskID/field/$fieldID"),
           headers: {
             "Authorization": authToken,
             "Content-Type": "application/json"
@@ -185,14 +201,23 @@ class ClickUpCustomFields {
       return customFieldResponse;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 
-  Future<Map<String, dynamic>> removeCustomFieldValue({required String taskID, required String fieldID, bool customTaskID = false, double? teamID}) async {
+  Future<Map<String, dynamic>> removeCustomFieldValue(
+      {required String taskID,
+      required String fieldID,
+      bool customTaskID = false,
+      double? teamID}) async {
     try {
       final response = await httpClient.delete(
-        Uri.parse(customTaskID ? "$endPoint/task/$taskID/field/$fieldID?custom_task_ids=true&team_id=$teamID" : "$endPoint/task/$taskID/field/$fieldID"),
+        Uri.parse(customTaskID
+            ? "$endPoint/task/$taskID/field/$fieldID?custom_task_ids=true&team_id=$teamID"
+            : "$endPoint/task/$taskID/field/$fieldID"),
         headers: {
           "Authorization": authToken,
           "Content-Type": "application/json"
@@ -202,7 +227,10 @@ class ClickUpCustomFields {
       return customFieldResponse;
     } catch (e) {
       print(e.toString());
-      throw ClickUpException(exceptionType: ClickUpExceptionType.requestError, exceptionMessage: "An error occured while making the request. Error is ${e.toString()}");
+      throw ClickUpException(
+          exceptionType: ClickUpExceptionType.requestError,
+          exceptionMessage:
+              "An error occured while making the request. Error is ${e.toString()}");
     }
   }
 }

@@ -5,5 +5,8 @@ class ClickUpRoles {
   late String authToken;
   late Client httpClient;
 
-  ClickUpRoles({required this.endPoint, required this.authToken, required this.httpClient});
+  ClickUpRoles(
+      {required this.endPoint,
+      required this.authToken,
+      required this.httpClient});
 }

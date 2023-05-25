@@ -8,7 +8,10 @@ void main() {
     setUp(() async {
       // Additional setup goes here.
       token = "pk_qwerty123456";
-      clickUp = ClickUp(apiEndpoint: "https://a00fb6e0-339c-4201-972f-503b9932d17a.remockly.com")..initialize(authToken: token);
+      clickUp = ClickUp(
+          apiEndpoint:
+              "https://a00fb6e0-339c-4201-972f-503b9932d17a.remockly.com")
+        ..initialize(authToken: token);
     });
 
     test('Tasks - Get Tasks', () async {
@@ -56,10 +59,7 @@ void main() {
         "time_estimate": 0,
         "start_date": 0,
         "start_date_time": false,
-        "assignees": {
-          "add": [],
-          "rem": []
-        }, //List of integers
+        "assignees": {"add": [], "rem": []}, //List of integers
         "archived": false
       });
       print(task);
@@ -81,10 +81,8 @@ void main() {
       expect(task.containsKey("current_status"), true);
     });
     test('Tasks - Get Bulk Tasks Time In Status', () async {
-      final task = await clickUp.tasks.getBulkTasksTimeInStatus(taskIDs: [
-        "1",
-        "2"
-      ]);
+      final task =
+          await clickUp.tasks.getBulkTasksTimeInStatus(taskIDs: ["1", "2"]);
       print(task);
       final result = task.values.first as Map;
       expect(result.containsKey("current_status"), true);

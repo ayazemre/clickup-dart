@@ -5,5 +5,8 @@ class ClickUpWebhooks {
   late String authToken;
   late Client httpClient;
 
-  ClickUpWebhooks({required this.endPoint, required this.authToken, required this.httpClient});
+  ClickUpWebhooks(
+      {required this.endPoint,
+      required this.authToken,
+      required this.httpClient});
 }
